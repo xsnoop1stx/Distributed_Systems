@@ -3,7 +3,6 @@ import java.util.*;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import java.text.*;
 
 public class GPXParser {
@@ -32,11 +31,11 @@ public class GPXParser {
             double lat = Double.parseDouble(wptElement.getAttribute("lat"));
             double lon = Double.parseDouble(wptElement.getAttribute("lon"));
 
-        // Get elevation and time of the waypoint
+            // Get elevation and time of the waypoint
             double ele = Double.parseDouble(wptElement.getElementsByTagName("ele").item(0).getTextContent());
             String timeStr = wptElement.getElementsByTagName("time").item(0).getTextContent();
 
-        // Convert time to Unix time in milliseconds
+            // Convert time to Unix time in milliseconds
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
             sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date time = sdf.parse(timeStr);
