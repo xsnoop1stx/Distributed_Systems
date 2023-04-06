@@ -7,7 +7,7 @@ import java.text.*;
 
 public class GPXParser {
 
-    private final Map<String, Waypoint> waypoints;
+    private Map<String, Waypoint> waypoints;
 
     public GPXParser(String filePath) throws ParserConfigurationException, SAXException, IOException, ParseException {
         // Load GPX file
@@ -53,7 +53,41 @@ public class GPXParser {
     }
 }
 
-record Waypoint(String name, double lat, double lon, double ele, long time) {
+class Waypoint {
+    private String name;
+    private double lat;
+    private double lon;
+    private double ele;
+    private long time;
+
+    public Waypoint(String name, double lat, double lon, double ele, long time) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.ele = ele;
+        this.time = time;
+    }
+
+    //return name of waypoint
+    public String getName() {
+        return name;
+    }
+    //return latitude of waypoint
+    public double getLat() {
+        return lat;
+    }
+    //return longitude of waypoint
+    public double getLon() {
+        return lon;
+    }
+    //return elevation of waypoint
+    public double getEle() {
+        return ele;
+    }
+    //return time when waypoint was reached
+    public long getTime() {
+        return time;
+    }
 
     @Override
     public String toString() {
