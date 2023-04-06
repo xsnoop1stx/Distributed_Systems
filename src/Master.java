@@ -2,8 +2,10 @@ import java.io.*;
 import java.util.*;
 import java.time.*;
 import java.lang.*;
-
+import java.net.*;
 public class Master {
+    ServerSocket s;
+    Socket providerSocket;
 
     public static Map<String, Double> readXML(String filename) throws Exception {
         //create a map of words and their numbers
@@ -57,6 +59,31 @@ public class Master {
         scanner.close();
         //return the map
         return map;
+    }
+
+    void openServer() {
+        try {
+
+            /* Create Server Socket */
+            s= new ServerSocket(4321, 10);
+
+            while (true) {
+                /* Accept the connection */
+                providerSocket= s.accept();
+                /* Handle the request */
+                Thread d= new ActionForClients(providerSocket);
+                d.start();
+            }
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } finally {
+            try {
+                providerSocket.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
     }
 }
 
