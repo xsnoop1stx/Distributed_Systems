@@ -7,8 +7,6 @@ public class Master {
     ServerSocket s;
     Socket providerSocket;
 
-
-
     void openServer() {
         try {
 
@@ -25,12 +23,16 @@ public class Master {
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
+
         } finally {
+
             try {
                 providerSocket.close();
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+
         }
     }
 }

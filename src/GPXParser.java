@@ -91,6 +91,6 @@ class Waypoint {
 
     @Override
     public String toString() {
-        return "(" + lat + ", " + lon + ") @ " + ele + "m, " + time;
+        return "(" + lat + ", " + lon + ") @ " + ele + "m, " + time + "ms";
     }
 }
